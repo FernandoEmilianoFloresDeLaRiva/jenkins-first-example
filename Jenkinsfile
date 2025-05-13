@@ -77,15 +77,17 @@ pipeline {
             }
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: env.SSH_CRED_ID, keyFileVariable: 'SSH_KEY')]) {
+                    sh 'chmod +x ./deploy.sh'
+                    def branchName = env.GIT_BRANCH.replaceAll('origin/', '')
                     sh """
-                    SSH_KEY=$SSH_KEY \
-                    EC2_USER=$EC2_USER \
-                    EC2_IP=$EC2_IP \
-                    REMOTE_PATH=$REMOTE_PATH \
-                    REPO_URL=$REPO_URL \
-                    APP_NAME=$APP_NAME \
-                    NODE_ENV=$NODE_ENV \
-                    GIT_BRANCH=${env.GIT_BRANCH.replaceAll('origin/', '')} \
+                    SSH_KEY=\$SSH_KEY \
+                    EC2_USER=\$EC2_USER \
+                    EC2_IP=\$EC2_IP \
+                    REMOTE_PATH=\$REMOTE_PATH \
+                    REPO_URL=\$REPO_URL \
+                    APP_NAME=\$APP_NAME \
+                    NODE_ENV=\$NODE_ENV \
+                    GIT_BRANCH=${branchName} \
                     ./deploy.sh
                     """
                 }
