@@ -5,14 +5,14 @@ pipeline {
         NODE_ENV = 'production'
         EC2_USER = 'ubuntu'
         EC2_IP = '52.200.251.120'
-        REMOTE_PATH = '/home/ubuntu/node-healthcheck'
+        REMOTE_PATH = '/home/ubuntu/jenkins-first-example'
         SSH_KEY = credentials('ssh-key-ec2')
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/roberto14118927/node-healthcheck.git'
+                git branch: 'main', url: 'https://github.com/FernandoEmilianoFloresDeLaRiva/jenkins-first-example.git'
             }
         }
 
