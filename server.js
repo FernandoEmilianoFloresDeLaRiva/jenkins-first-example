@@ -18,9 +18,9 @@ app.get("/health", (_req, res) => {
 app.get("/tasks", (_req, res) => {
   res.status(200).json({
     tasks: [
-      { id: 1, title: "Task 1 for production", description: "Description 1 for production" },
-      { id: 2, title: "Task 2 for production", description: "Description 2 for production" },
-      { id: 3, title: "Task 3 for production", description: "Description 3 for production" },
+      { id: 1, title: "Task 1 for staging", description: "Description 1 for staging" },
+      { id: 2, title: "Task 2 for staging", description: "Description 2 for staging" },
+      { id: 3, title: "Task 3 for staging", description: "Description 3 for staging" },
     ],
   });
 });
