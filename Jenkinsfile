@@ -44,6 +44,13 @@ pipeline {
                             env.SSH_CRED_ID = 'ssh-key-ec2'
                             env.NODE_ENV = 'qa'
                             break
+                        case 'staging':
+                            env.DEPLOY_ENV = 'staging'
+                            env.EC2_USER = 'ubuntu'
+                            env.EC2_IP = '44.204.59.126'
+                            env.REMOTE_PATH = '/home/ubuntu/jenkins-first-example'
+                            env.SSH_CRED_ID = 'ssh-key-ec2'
+                            env.NODE_ENV = 'staging'
                         default:
                             env.DEPLOY_ENV = 'none'
                             echo "No hay despliegue configurado para esta rama: ${branch}"

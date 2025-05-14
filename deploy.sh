@@ -7,6 +7,18 @@ if [[ -z "$SSH_KEY" || -z "$EC2_USER" || -z "$EC2_IP" || -z "$REMOTE_PATH" || -z
 fi
 
 ssh -i "$SSH_KEY" -o StrictHostKeyChecking=no "$EC2_USER@$EC2_IP" "
+  if ! command -v node >/dev/null 2>&1 || ! command -v npm >/dev/null 2>&1; then
+    echo 'Node.js o npm no están instalados. Instalando...'
+    sudo apt update
+    sudo apt upgrade -y
+    curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+    sudo apt install nodejs -y
+  fi
+
+  if ! command -v pm2 >/dev/null 2>&1; then
+    sudo npm install -g pm2
+  fi
+
   if [ ! -d \"$REMOTE_PATH\" ]; then
     mkdir -p $REMOTE_PATH
     cd $REMOTE_PATH
